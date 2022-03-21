@@ -28,7 +28,17 @@ class User
 
     result = @@connection.exec_params("SELECT * FROM Credentials WHERE id = $1", [id])
     User.new(id: result[0]['id'], email: result[0]['email_address'])
-    
+
+  end
+
+  def self.authenticate(email, password)
+
+    db_env_connection
+
+    result = @@connection.exec_params("SELECT * FROM Credentials WHERE email_address = $1", [email])
+
+    User.new(id: result[0]['id'], email: result[0]['email_address'])
+
   end
 
   private
