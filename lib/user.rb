@@ -2,6 +2,14 @@ require 'pg'
 require 'bcrypt'
 
 class User
+
+  attr_reader :id, :email
+
+  def initialize(id:, email:)
+    @id = id
+    @email = email
+  end
+
   def self.create(email:, password:)
 
     encrypted_password = BCrypt::Password.create(password)
@@ -13,11 +21,14 @@ class User
 
   end
 
-  attr_reader :id, :email
+  def self.find(id)
+    return nil unless id
 
-  def initialize(id:, email:)
-    @id = id
-    @email = email
+    db_env_connection
+
+    result = @@connection.exec_params("SELECT * FROM Credentials WHERE id = $1", [id])
+    User.new(id: result[0]['id'], email: result[0]['email_address'])
+    
   end
 
   private
