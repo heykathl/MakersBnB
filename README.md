@@ -17,4 +17,4 @@
 
   As a registered user, to avoid my space being double booked, I would like the availability of my space to be updated when it's booked (LANDLORD)
 
-  As a registered user, when a booking is confirmed, I need my space to become unavailable to other users (LANDLORD)
+  As a registered user, when a booking is confirmed, I need my space to become unavailable to other users (TENANT)
