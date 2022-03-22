@@ -1,1 +1,1 @@
-CREATE TABLE user(id SERIAL PRIMARY KEY, name VARCHAR(60), password );
+CREATE TABLE Credentials (id SERIAL PRIMARY KEY, email_address VARCHAR(60), password VARCHAR(200));
