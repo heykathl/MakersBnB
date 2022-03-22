@@ -14,9 +14,14 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/signup' do
-    @user = User.create(params[:email], params[:password])
-    session[:user] = @user
-    redirect '/spaces'
+    if User.find(email: params[:email])
+        flash[:error] = "Invalid user details"
+        redirect '/'
+    else 
+        @user = User.create(email: params[:email],password: params[:password])
+        session[:user] = @user
+        redirect '/spaces'
+    end
   end
 
   post '/logout' do
@@ -25,8 +30,16 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/login' do
-
     erb :login
+  end
+
+  post '/login' do
+    if User.authenticate(email: params[:email],password: params[:password]) 
+      redirect '/spaces'
+    else
+      flash[:error] = "login unsuccessful"
+      redirect '/login'
+    end
   end
 
   get '/requests' do
