@@ -12,8 +12,10 @@ class Space
     @user_id = user_id
   end
 
-  def self.create(name:, description:, price_per_night:, available_from:, available_to:, user_id:)
+  def self.create(name:, description:, price_per_night:, available_from:, available_to:, email:)
 
+    user = User.find(email)
+    user_id = user.id
 
     db_env_connection
 
