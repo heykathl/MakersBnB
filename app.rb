@@ -7,9 +7,21 @@ class MakersBnB < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  get '/' do
+  enable :sessions
 
+  get '/' do
     erb :index
+  end
+
+  post '/signup' do
+    @user = User.create(params[:email], params[:password])
+    session[:user] = @user
+    redirect '/spaces'
+  end
+
+  post '/logout' do
+    session[:user] = nil
+    redirect '/'
   end
 
   get '/login' do
