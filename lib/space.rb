@@ -25,6 +25,12 @@ class Space
 
   end
 
+  def self.all
+    db_env_connection
+    
+    result = @@connection.exec_params("SELECT * FROM spaces")
+  end
+
   private
 
   def self.db_env_connection
