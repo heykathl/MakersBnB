@@ -1,0 +1,30 @@
+<body>
+  <div class="main">
+    <p class="sign" align="center">Requests</p>
+
+    <ul>
+    <%# booking requests made %>
+      <% @booking_requests.each do |booking_request| %>
+        <li class="request" id="request-<%= booking_request.id %>">
+          <form action="/requests/confirm" method="get">
+          <%# <button to be updated with info of request %>
+            <button><%= request.info %></button>
+          </form>
+        </li>
+      <% end %>
+    </ul> 
+
+    <ul>
+    <%# booking requests received %>
+      <% @booking_requests.each do |booking_request| %>
+        <li class="request" id="request-<%= booking_request.id %>">
+          <form action="/requests/confirm" method="get">
+          <%# <button to be updated with info of request %>
+            <button><%= request.info %></button>
+          </form>
+        </li>
+      <% end %>
+    </ul> 
+
+  </div>    
+</body>
