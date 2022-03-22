@@ -1,0 +1,20 @@
+<body>
+  <div class="main">
+    <p class="sign" align="center">Check out these spaces!</p><br>
+    <br>
+    <form action="/spaces/new" method="get">
+      <input class="button" type="submit" align="center" name= "new_space" value= "List a new Space">
+    </form>
+    <ul>
+      <% @spaces.each do |space| %>
+        <li class="space" id="space-<%= space.id %>">
+          <form action="/spaces/<%= space.id %>" method="get">
+          <%# button to be updated to image of space %>
+            <button><%= space.name %></button>
+          </form>
+        </li>
+      <% end %>
+    </ul>
+  </div>    
+</body>
+

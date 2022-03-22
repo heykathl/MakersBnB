@@ -1,4 +1,4 @@
-<style>
+<%# <style>
 body {
   background-color: #F3EBF6;
   font-family: 'Ubuntu', sans-serif;
@@ -108,7 +108,7 @@ a {
   .main {
       border-radius: 0px;
   }
-</style>
+</style> %>
 
 <head>
   <link rel="stylesheet" href="css/style.css">
@@ -125,9 +125,9 @@ a {
     <p class="subsign" align="center">Sign up to MakersBnB today!</p>
 
     <form class="form1" action='/spaces' method='post'>
-      <input class="un " type="text" align="center" placeholder="Email">
-      <input class="pass" type="password" align="center" placeholder="Password">
-      <a class="submit" align="center">Sign up</a>
+      <input class="un " type="text" align="center" name="email" placeholder="Email">
+      <input class="pass" type="password" align="center" name= "password" placeholder="Password">
+      <a class="submit" align="center"><button>sign up</button></a>
     </form> 
 
   </div>    
