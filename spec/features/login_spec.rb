@@ -1,6 +1,6 @@
 feature "Can login" do
   scenario "login successfully" do
-       User.create("maker@maker.com", "12345@") 
+       User.create(email: "maker@maker.com", password: "12345@") 
        visit("/login")
        fill_in("email", with: "maker@maker.com")
        fill_in("password", with: "12345@" )
