@@ -1,0 +1,40 @@
+require 'pg'
+
+class Request 
+
+  attr_reader :id, :space_id, :start_date, :end_date
+  
+  def initialize(id:, space_id:, start_date:, end_date:)
+    @id = id
+    @space_id = space_id
+    @start_date = start_date
+    @end_date = end_date
+  end
+
+  def self.create(space_id:, start_date:, end_date:)
+    db_env_connection
+    result = @@connection.exec(
+      "INSERT INTO requests (space_id, start_date, end_date) 
+      VALUES ('#{space_id}', '#{start_date}', '#{end_date}') 
+      RETURNING id, space_id, start_date, end_date")
+    Request.new(
+      id:result['id'], 
+      space_id:result['space_id'], 
+      start_date:result['start_date'],
+      end_date:result['end_date']
+      )
+  end
+
+
+
+  def self.db_env_connection
+
+    if ENV['ENVIRONMENT'] == "test"
+      @@connection = PG.connect(dbname: 'makersbnb_test')
+    else
+      @@connection = PG.connect(dbname: 'makersbnb')
+    end
+
+  end
+
+end
