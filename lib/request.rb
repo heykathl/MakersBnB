@@ -1,4 +1,6 @@
 require 'pg'
+require 'user'
+require 'space'
 
 class Request 
 
@@ -18,10 +20,10 @@ class Request
       VALUES ('#{space_id}', '#{start_date}', '#{end_date}') 
       RETURNING id, space_id, start_date, end_date")
     Request.new(
-      id:result['id'], 
-      space_id:result['space_id'], 
-      start_date:result['start_date'],
-      end_date:result['end_date']
+      id:result[0]['id'], 
+      space_id:result[0]['space_id'], 
+      start_date:result[0]['start_date'],
+      end_date:result[0]['end_date']
       )
   end
 

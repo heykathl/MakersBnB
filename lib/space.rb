@@ -38,6 +38,11 @@ class Space
     db_env_connection
 
     result = @@connection.exec_params("SELECT space_name, description, available_from, available_to FROM spaces")
+    result.map do |row|
+      Space.new(row['id'], row['space_name'], row['description'])
+    end
+      
+    end
   end
 
   def self.find
