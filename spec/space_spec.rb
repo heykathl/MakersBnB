@@ -23,6 +23,8 @@ describe '.all' do
     list = Space.all
     expect(list[1]['space_name']).to eq '2 bed castle'
     expect(list[0]['space_name']).to eq '1 bed castle'
+    expect(list[1]['available_from']).to eq '2022-04-21'
+    expect(list[1]['available_to']).to eq '2022-06-21'
 
   end
 

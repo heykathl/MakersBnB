@@ -27,8 +27,8 @@ class Space
 
   def self.all
     db_env_connection
-    
-    result = @@connection.exec_params("SELECT * FROM spaces")
+
+    result = @@connection.exec_params("SELECT space_name, description, available_from, available_to FROM spaces")
   end
 
   private
