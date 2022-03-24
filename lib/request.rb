@@ -27,8 +27,6 @@ class Request
       )
   end
 
-
-
   def self.db_env_connection
 
     if ENV['ENVIRONMENT'] == "test"

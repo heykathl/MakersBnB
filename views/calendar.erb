@@ -1,3 +1,11 @@
-<=% month_calendar do |date| %>
-<=% date %>
-<=% end %>
+
+
+<form>
+  <label>Start Date:
+    <input type="date" name="start_date" min="2020-04-01" max="2020-04-05">
+  </label>
+  <label>End Date:
+    <input type="date" name="end_date" min="2020-04-01" max="2020-04-30">
+  </label>
+  <a class="submit"><button>submit</button></a>
+</form>
