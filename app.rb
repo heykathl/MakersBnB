@@ -17,7 +17,7 @@ class MakersBnB < Sinatra::Base
 
   post '/signup' do
     user = User.find(params[:email])
-    if user.email == params[:email]
+    if user != nil
         puts "User already exists. Now redirecting to the login page."
         redirect '/login'
     else 

@@ -8,7 +8,7 @@ describe '.create' do
 
     expect(space).to be_a Space
     expect(space.name).to eq '1 bed castle'
-    expect(space.user_id).to eq user.id
+    expect(space.user_id).to eq user[0].id
   end
 
 end
@@ -24,7 +24,7 @@ describe '.all' do
   
     expect(list[0].id).to eq space.id
     expect(list[0].name).to eq '1 bed castle'
-    expect(list[0].user_id).to eq user.id
+    expect(list[0].user_id).to eq user[0].id
     expect(list[0].available_to).to eq '2022-05-21'
     
   end

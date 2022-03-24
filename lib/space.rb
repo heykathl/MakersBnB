@@ -15,9 +15,11 @@ class Space
   end
 
   def self.create(name:, description:, price_per_night:, available_from:, available_to:, email:)
-
+    p 'YAYA'
+    p email
     user = User.find(email)
-    user_id = user.id
+    p user
+    user_id = user[0].id
 
     d1 = Date.parse(available_from).to_date
     d2 = Date.parse(available_to).to_date

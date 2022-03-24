@@ -21,17 +21,19 @@ class User
       VALUES($1, $2) 
       RETURNING id, email_address;", 
       [email, encrypted_password])
-    User.new(id: result[0]['id'], email: result[0]['email_address'])
+    result.map do |row|  
+      User.new(id: row['id'], email: row['email_address'])
+    end
   end
 
   def self.find(email)
-    return nil unless email
 
     db_env_connection
 
     result = @@connection.exec_params(
       "SELECT * FROM Credentials 
       WHERE email_address = $1", [email])
+    return nil unless result.any?
     result.map do |row|
       User.new(id:row['id'], email: row['email_address'])
     end
