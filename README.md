@@ -5,25 +5,25 @@
 
 
 ## User Stories
-   
+ *  
 ```
 As a user, 
 So that I can list my space, 
 I would like register an account (LANDLORD)
 ```
-  
+ * 
 ```
 As a registered user, 
 So that I can rent out my space, 
 I would like to list it on the website (LANDLORD)
 ```
-  
+ * 
 ```
 As a registered user, 
 So I can manage my portfolio, 
 I would like to be able to list multiple spaces (LANDLORD)
 ```
-  
+ * 
 ```
 As a registered user, 
 So that I can provide details about my space I would like to name my space, 
@@ -73,7 +73,7 @@ I need my space to become unavailable to other users (TENANT)
 
 2. Allocated the following tasks:
 * Controller and databases - Kenny and Jasmine
-* User class in the model to registration - Anushu
+* User class in the model to registration - Anusha
 * Rendering view files and research on implementing calendars - Harry and Kathleen
 
 #### Tuesday 22nd March
@@ -94,6 +94,10 @@ I need my space to become unavailable to other users (TENANT)
 * List a new space
   <img width="675" alt="Screenshot 2022-03-22 at 12 38 03" src="https://user-images.githubusercontent.com/74867241/159483854-38cf7377-1196-4c56-841a-078eb11b068e.png">
 
-3. 
+#### Wednesday 22nd March
+3. Allocated the following tasks:
+* Connecting the User and Spaces models to the controller and view - Kenny and Jasmine
+* Implementation of the calendar - Anusha
+* Complete the Request model and linking it to the controller and view - Harry and Kathleen
 
 ## Tests

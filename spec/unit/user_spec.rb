@@ -4,8 +4,8 @@ describe '.create' do
   it 'creates a new user' do
     user = User.create(email: 'test@gmail.com', password: 'password12')
 
-    expect(user).to be_a User
-    expect(user.email).to eq 'test@gmail.com'
+    # expect(user).to be_a User
+    expect(user[0].email).to eq 'test@gmail.com'
   end
 
     it 'hashes the password using BCrypt' do
@@ -21,8 +21,8 @@ describe '.find' do
     user = User.create(email: 'test@gmail.com', password: 'password12')
     result = User.find('test@gmail.com')
 
-    expect(result.id).to eq user.id
-    expect(result.email).to eq user.email
+    expect(result[0].id).to eq user[0].id
+    expect(result[0].email).to eq user[0].email
   end
 
 end
@@ -33,7 +33,7 @@ describe '.authenticate' do
     
     authenticated_user = User.authenticate('test@gmail.com', 'password12')
 
-    expect(authenticated_user.id).to eq user.id
+    expect(authenticated_user.id).to eq user[0].id
   end
 
   it 'returns nil given an incorrect email' do
