@@ -16,9 +16,10 @@ class User
 
     db_env_connection
 
-    result = @@connection.exec_params("INSERT INTO Credentials (email_address, password) VALUES($1, $2) RETURNING id, email_address;", [email, encrypted_password])
+    result = @@connection.exec_params("INSERT INTO Credentials 
+      (email_address, password) VALUES($1, $2) 
+    RETURNING id, email_address;", [email, encrypted_password])
     User.new(id: result[0]['id'], email: result[0]['email_address'])
-
   end
 
   def self.find(email)
@@ -26,7 +27,8 @@ class User
 
     db_env_connection
 
-    result = @@connection.exec_params("SELECT * FROM Credentials WHERE email_address = $1", [email])
+    result = @@connection.exec_params("SELECT * FROM Credentials 
+      WHERE email_address = $1", [email])
     User.new(id: result[0]['id'], email: result[0]['email_address'])
 
   end
@@ -35,7 +37,8 @@ class User
 
     db_env_connection
 
-    result = @@connection.exec_params("SELECT * FROM Credentials WHERE email_address = $1", [email])
+    result = @@connection.exec_params("SELECT * FROM Credentials 
+      WHERE email_address = $1", [email])
     
     return unless result.any?
     return unless BCrypt::Password.new(result[0]['password']) == password
