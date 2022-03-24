@@ -2,10 +2,10 @@
 
 <form>
   <label>Start Date:
-    <input type="date" name="start_date" min="2020-04-01" max="2020-04-05">
+    <input type="date" name="start_date" min=<%= @available_from %> max=<%= @available_to %>>
   </label>
   <label>End Date:
-    <input type="date" name="end_date" min="2020-04-01" max="2020-04-30">
+    <input type="date" name="end_date" min=<%= @available_from %> max=<%= @available_to %>>
   </label>
   <a class="submit"><button>submit</button></a>
 </form>

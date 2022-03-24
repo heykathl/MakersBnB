@@ -65,8 +65,8 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/calendar' do
-    sessions[:available_from] = @available_from
-    sessions[:available_to] = @available_to
+    @available_from = sessions[:available_from]
+    @available_to = sessions[:available_to]
     erb :calendar
   end
 
