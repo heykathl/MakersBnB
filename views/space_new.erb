@@ -2,25 +2,25 @@
   <div class="main">
     <p class="sign" align="center">List a Space</p>
 
-    <form class="form1" action='/login' method='post'>
+    <form class="form1" action='/spaces/new' method='post'>
       Name:
       <br>
       <input class="un " type="text" align="center" name="name">
       <br>
       Description:
       <br>
-      <textarea rows='5' cols=80' name='message'></textarea>
+      <textarea rows='5' cols=80' name='description'></textarea>
       Price per night (£)
       <br>
       <input class="un " type="text" align="center" name="price">
       <br>
-      Available from (DD/MM/YY): 
+      Available from (YYYY/MM/DD): 
       <br>
-      <input class="un " type="text" align="center" name="available-from">
+      <input class="un " type="text" align="center" name="available_from">
       <br>
-      Available to (DD/MM/YY): 
+      Available to (YYYY/MM/DD): 
       <br>
-      <input class="un " type="text" align="center" name="available-to">
+      <input class="un " type="text" align="center" name="available_to">
       <br>
       <br>
       <a class="submit" align="center"><button>List my Space</button></a>
