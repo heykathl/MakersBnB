@@ -1,14 +1,11 @@
-
-
-
 <form action='/requests' method="post">
-  Request from (DD/MM/YY): 
+  Request from (YYYY-MM-DD): 
     <br>
-    <input class="un " type="text" align="center" name="request-from">
+    <input type="date" name="start_date" min=<%= @available_from %> max=<%= @available_to %>>
     <br>
-  Request to (DD/MM/YY): 
+  Request to (YYYY-MM-DD): 
     <br>
-    <input class="un " type="text" align="center" name="request-to">
+    <input type="date" name="end_date" min=<%= @available_from %> max=<%= @available_to %>>
     <br>
   <button> 
     Book me 
