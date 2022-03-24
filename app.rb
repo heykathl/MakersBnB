@@ -76,6 +76,8 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces/:space_id' do
+    p @available_from = session[:available_from]
+    p @available_to = session[:available_to]
     erb :request_space
   end
 
