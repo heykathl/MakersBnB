@@ -16,20 +16,27 @@ class User
 
     db_env_connection
 
-    result = @@connection.exec_params("INSERT INTO Credentials 
-      (email_address, password) VALUES($1, $2) 
-    RETURNING id, email_address;", [email, encrypted_password])
-    User.new(id: result[0]['id'], email: result[0]['email_address'])
+    result = @@connection.exec_params(
+      "INSERT INTO Credentials (email_address, password) 
+      VALUES($1, $2) 
+      RETURNING id, email_address;", 
+      [email, encrypted_password])
+    result.map do |row|  
+      User.new(id: row['id'], email: row['email_address'])
+    end
   end
 
   def self.find(email)
-    return nil unless email
 
     db_env_connection
 
-    result = @@connection.exec_params("SELECT * FROM Credentials 
+    result = @@connection.exec_params(
+      "SELECT * FROM Credentials 
       WHERE email_address = $1", [email])
-    User.new(id: result[0]['id'], email: result[0]['email_address'])
+    return nil unless result.any?
+    result.map do |row|
+      User.new(id:row['id'], email: row['email_address'])
+    end
 
   end
 
@@ -37,13 +44,14 @@ class User
 
     db_env_connection
 
-    result = @@connection.exec_params("SELECT * FROM Credentials 
+    result = @@connection.exec_params(
+      "SELECT * FROM Credentials 
       WHERE email_address = $1", [email])
     
     return unless result.any?
     return unless BCrypt::Password.new(result[0]['password']) == password
 
-    User.new(id: result[0]['id'], email: result[0]['email_address'])
+    return User.new(id: result[0]['id'], email: result[0]['email_address'])
 
   end
 

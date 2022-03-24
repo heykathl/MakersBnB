@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
-require './lib/user'
+require_relative './lib/user'
+require_relative './lib/space'
+# require './lib/request'
 
 class MakersBnB < Sinatra::Base
   configure :development do
@@ -14,9 +16,10 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/signup' do
-    if User.find(email: params[:email])
-        flash[:error] = "Invalid user details"
-        redirect '/'
+    user = User.find(params[:email])
+    if user != nil
+        puts "User already exists. Now redirecting to the login page."
+        redirect '/login'
     else 
         @user = User.create(email: params[:email],password: params[:password])
         session[:user] = @user
@@ -34,10 +37,13 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/login' do
-    if User.authenticate(email: params[:email],password: params[:password]) 
-      redirect '/spaces'
-    else
-      flash[:error] = "login unsuccessful"
+
+  authenticated_user = User.authenticate(params[:email], params[:password])
+  if authenticated_user.email == params[:email]
+   redirect '/spaces'
+  else
+      puts "login unsuccessful"
+    
       redirect '/login'
     end
   end
