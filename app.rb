@@ -37,15 +37,12 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/login' do
-
-  authenticated_user = User.authenticate(params[:email], params[:password])
-  if authenticated_user.email == params[:email]
-
-    session[:user] = [authenticated_user]
-   redirect '/spaces'
-  else
+    authenticated_user = User.authenticate(params[:email], params[:password])
+    if authenticated_user.email == params[:email]
+      session[:user] = [authenticated_user]
+      redirect '/spaces'
+    else
       puts "login unsuccessful"
-    
       redirect '/login'
     end
   end
@@ -56,12 +53,10 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces/new' do
-    
     erb :space_new
   end
 
   post '/spaces/new' do
-
     Space.create(
       name: params[:name], 
       description: params[:description], 
@@ -86,12 +81,21 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/calendar' do
-    
+  
     redirect '/request'
   end
 
-  get '/request' do
-    @request = params[request_id]
+  get '/requests' do
+    # @request = params[request_id]
+    @booking_requests = Request.all
+    erb :requests
+  end
+
+  post '/request' do
+    Request.create(
+      space_id: , 
+      start_date: params[request_from], 
+      end_date: params[request_to])
   end
 
   get '/request/:renter_id' do
