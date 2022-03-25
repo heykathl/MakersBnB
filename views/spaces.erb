@@ -4,14 +4,14 @@ body {
   font-family: 'Ubuntu', sans-serif;
 }
 
-/* .main {
+.main {
   background-color: #FFFFFF;
-  width: 400px;
-  height: 400px;
+  width: 1000px;
+  height: 700px auto;
   margin: 7em auto;
   border-radius: 1.5em;
   box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-} */
+}
     
 .sign {
   padding-top: 40px;
@@ -32,6 +32,26 @@ body {
   width: 76%;
   color: rgb(38, 50, 56);
   font-weight: 700;
+  font-size: 22;
+  letter-spacing: 1.5px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-bottom: 50px;
+  margin-left: 46px;
+  text-align: center;
+  margin-bottom: 27px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.un2 {
+  width: 76%;
+  color: rgb(38, 50, 56);
+  font-weight: 350;
   font-size: 14px;
   letter-spacing: 1px;
   background: rgba(136, 126, 126, 0.04);
@@ -123,15 +143,19 @@ a {
   <div class="main">
     <p class="sign" align="center">Check out these spaces!</p><br>
     <br>
-    <form action="/spaces/new" method="get">
+    <form align="center" action="/spaces/new" method="get">
       <input class="button" type="submit" align="center" name= "new_space" value= "List a new Space">
     </form>
     <ul>
       <% @spaces.each do |space| %>
-        <li class="space" id="space-<%= space.id %>">
-          <form action="/spaces/<%= space.id %>" method="get">
+        <li class="subsign" id="space-<%= space.id %>">
+          <form class="un" action="/spaces/<%= space.id %>" method="get">
           <%# button to be updated to image of space %>
-            <button><%= space.name %></button>
+            <%= space.name %><br>
+            <br>  
+            <p class="un2" align="center"> <%= space.description %></p><br>
+            <br> 
+            <button>View space</button>
           </form>
         </li>
       <% end %>
