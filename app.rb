@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative './lib/user'
 require_relative './lib/space'
-# require './lib/request'
+require_relative './lib/request'
 
 class MakersBnB < Sinatra::Base
   configure :development do
@@ -57,23 +57,31 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/spaces/new' do
-    Space.create(
+
+    @space = Space.create(
       name: params[:name], 
       description: params[:description], 
       price_per_night: params[:price_per_night], 
       available_from: params[:available_from], 
       available_to: params[:available_to], 
       email: session[:user][0].email)
+
+      session[:space_id] = @space.id
       
     session[:available_from] = params[:available_from]
     session[:available_to] = params[:available_to]
+
     redirect '/spaces'
   end
 
   get '/spaces/:space_id' do
+    session[:space_id] = params['space_id']
+    
+    @available_from = session[:available_from]
+    @available_to = session[:available_to]
     erb :request_space
   end
-
+  
   get '/calendar' do
     session[:available_from] = @available_from
     session[:available_to] = @available_to
@@ -85,17 +93,21 @@ class MakersBnB < Sinatra::Base
     redirect '/request'
   end
 
-  get '/requests' do
-    # @request = params[request_id]
-    @booking_requests = Request.all
-    erb :requests
+ post '/requests' do
+    Request.create(
+      space_id: session[:space_id],
+      start_date: params[:start_date], 
+      end_date: params[:end_date],
+      space_renter: session[:user][0].id
+    )
+    redirect '/requests'
   end
 
-  post '/request' do
-    Request.create(
-      space_id: , 
-      start_date: params[request_from], 
-      end_date: params[request_to])
+  get '/requests' do
+    @booking_requests = Request.all
+    @user_id = session[:user][0].id
+    erb :requests
+
   end
 
   get '/request/:renter_id' do

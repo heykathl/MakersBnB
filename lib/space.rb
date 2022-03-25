@@ -15,10 +15,7 @@ class Space
   end
 
   def self.create(name:, description:, price_per_night:, available_from:, available_to:, email:)
-    p 'YAYA'
-    p email
     user = User.find(email)
-    p user
     user_id = user[0].id
 
     d1 = Date.parse(available_from).to_date
@@ -58,7 +55,7 @@ class Space
       Space.new(id:row['id'], name:row['space_name'], description:row['description'], available_from:row['available_from'], available_to:row['available_to'], user_id:row['user_id'])
     end
       
-    end
+  end
  
 
   def self.find
