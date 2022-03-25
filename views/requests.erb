@@ -1,15 +1,14 @@
 <body>
   <div class="main">
-    <p class="sign" align="center">Requests</p>
+    <p class="sign" align="center"><h1>Requests</h1></p>
 
     <ul>
-    <%# booking requests I made %>
+    <h3> Booking requests I made </h3>
       <% @booking_requests.each do |booking_request| %>
       <% if booking_request.space_renter ==  @user_id %>
         <li class="request" id="request-<%= booking_request.id %>">
           <form action="/requests/confirm" method="get">
-          <%# <button to be updated with info of request %>
-            <%# <button><%= request.info %>something
+          <%= @space_name %> <button>View</button>
         <% end %>
           </form>
         </li>
@@ -17,13 +16,12 @@
     </ul> 
 
     <ul>
-    <%# booking requests I received %>
+     <h3> Booking requests I received </h3>
       <% @booking_requests.each do |booking_request| %>
       <% if booking_request.owner_id ==  @user_id %>
         <li class="request" id="request-<%= booking_request.id %>">
           <form action="/requests/confirm" method="get">
-          <%# <button to be updated with info of request %>
-            <%# <button><%= request.info %>something else
+          <%= @space_name %> <button>View</button>
             <% end %>
           </form>
         </li>
