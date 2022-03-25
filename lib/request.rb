@@ -70,11 +70,10 @@ class Request
     end
   end
 
-  def self.confirmed(space_id:)
-    db_env_connection
+  def self.confirmed(space_id:, start_date:, end_date:)
     
-    d1 = Date.parse(Request.start_date).to_date
-    d2 = Date.parse(Request.end_date).to_date
+    d1 = Date.parse(start_date).to_date
+    d2 = Date.parse(end_date).to_date
 
     db_env_connection
 
@@ -91,6 +90,28 @@ class Request
     result = @@connection.exec_params("SELECT space_name FROM spaces WHERE id = $1;", [space_id])
     result[0]['space_name']
   end
+  
+  # def self.confirmed(space_id:)
+  #   db_env_connection
+    
+  #   d1 = Date.parse(Request.start_date).to_date
+  #   d2 = Date.parse(Request.end_date).to_date
+
+  #   db_env_connection
+
+  #   d1.upto(d2) do |date|
+  #     @@connection.exec_params("DELETE FROM available_dates WHERE space_id = $1 AND available_dates = $2);", [space_id], [date])
+  #   end
+
+  # end
+
+  # def self.space_name(space_id:)
+
+  #   db_env_connection
+
+  #   result = @@connection.exec_params("SELECT space_name FROM spaces WHERE id = $1;", [space_id])
+  #   result[0]['space_name']
+  # end
 
 
   

@@ -133,6 +133,16 @@ class MakersBnB < Sinatra::Base
     erb :requests
   end
 
+  # get '/requests/confirm' do
+  #   @space_name = session[:space_name]
+  #   erb :confirm_request
+  # end
+
+  # post '/requests/confirm' do
+  #   space_id = session[:booking_requests].space_id
+  #   start_date = 
+  #   Request.confirmed(space_id: space_id, start_date: )
+  # end
   get '/requests/confirm' do
     @space_name = session[:space_name]
     erb :confirm_request
@@ -140,8 +150,9 @@ class MakersBnB < Sinatra::Base
 
   post '/requests/confirm' do
     space_id = session[:booking_requests].space_id
-    start_date = 
-    Request.confirmed(space_id: space_id, start_date: )
+    start_date = session[:start_date]
+    end_date = session[:end_date]
+    Request.confirmed(space_id: space_id, start_date: start_date, end_date: end_date)
   end
 
 
