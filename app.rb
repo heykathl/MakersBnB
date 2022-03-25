@@ -94,6 +94,8 @@ class MakersBnB < Sinatra::Base
   end
 
  post '/requests' do
+    session[:start_date] = params[:start_date]
+    session[:end_date] = params[:end_date]
     Request.create(
       space_id: session[:space_id],
       start_date: params[:start_date], 
@@ -105,8 +107,9 @@ class MakersBnB < Sinatra::Base
 
   get '/requests' do
     @booking_requests = Request.all
-    session[:booking_requests] = @booking_requests[0]
-    @space_name = Request.space_name(space_id: @booking_requests[0].space_id)
+    session[:booking_requests] = @booking_requests
+    @booking_requests.each {|}
+    @space_name = Request.space_name(space_id: @booking_requests.space_id)
     session[:space_name] = @space_name
     @user_id = session[:user][0].id
     erb :requests
@@ -119,8 +122,9 @@ class MakersBnB < Sinatra::Base
 
   post '/requests/confirm' do
     space_id = session[:booking_requests].space_id
-    start_date = 
-    Request.confirmed(space_id: space_id, start_date: )
+    start_date = session[:start_date]
+    end_date = session[:end_date]
+    Request.confirmed(space_id: space_id, start_date: start_date, end_date: end_date)
   end
 
 

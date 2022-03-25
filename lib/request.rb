@@ -65,11 +65,10 @@ class Request
     end
   end
 
-  def self.confirmed(space_id:)
-    db_env_connection
+  def self.confirmed(space_id:, start_date:, end_date:)
     
-    d1 = Date.parse(Request.start_date).to_date
-    d2 = Date.parse(Request.end_date).to_date
+    d1 = Date.parse(start_date).to_date
+    d2 = Date.parse(end_date).to_date
 
     db_env_connection
 
