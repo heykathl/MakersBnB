@@ -97,11 +97,24 @@ class MakersBnB < Sinatra::Base
 
   get '/requests' do
     @booking_requests = Request.all
+    session[:booking_request_id] = @booking_requests[0].id
     erb :requests
   end
 
-  get '/request/:renter_id' do
-    
+  get '/request/:booking_request_id' do
+    # clicked on a property under the 'requests I've received' column
+    # takes us to the page to decide whether to confirm or deny
+    session[:booking_request_id] = params[:booking_request_id]
+    erb :single_request
+  end
+  
+  post '/request/:booking_request_id' do
+    # confirm or deny - once clicked will sent post for logic to delete
+    # property from requests list 
+    if params[:confirm]
+      Request.confirmed
+    end
+    redirect '/requests'
   end
 
 
