@@ -129,13 +129,22 @@ class MakersBnB < Sinatra::Base
   get '/requests' do
     redirect '/login' if session[:user] == nil
     @booking_requests = Request.all
+    session[:booking_requests] = @booking_requests[0]
+    @space_name = Request.space_name(space_id: @booking_requests[0].space_id)
+    session[:space_name] = @space_name
     @user_id = session[:user][0].id
     erb :requests
-
   end
 
-  get '/request/:renter_id' do
-    
+  get '/requests/confirm' do
+    @space_name = session[:space_name]
+    erb :confirm_request
+  end
+
+  post '/requests/confirm' do
+    space_id = session[:booking_requests].space_id
+    start_date = 
+    Request.confirmed(space_id: space_id, start_date: )
   end
 
 

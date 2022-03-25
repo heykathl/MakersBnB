@@ -30,7 +30,7 @@ class Request
       WHERE spaces.id = $1
       ORDER BY spaces.id;", [space_id])
       
-    p "joined_result = #{joined_result}"
+      "joined_result = #{joined_result}"
 
     @@owner_id = joined_result[0]['user_id']
     @@space_name = joined_result[0]['space_name']
@@ -70,7 +70,7 @@ class Request
     end
   end
 
-  def self.confirmed
+  def self.confirmed(space_id:)
     db_env_connection
     
     d1 = Date.parse(Request.start_date).to_date
@@ -79,9 +79,17 @@ class Request
     db_env_connection
 
     d1.upto(d2) do |date|
-      @@connection.exec_params("DELETE FROM available_dates WHERE available_dates = $1);", [date])
+      @@connection.exec_params("DELETE FROM available_dates WHERE space_id = $1 AND available_dates = $2);", [space_id], [date])
     end
 
+  end
+
+  def self.space_name(space_id:)
+
+    db_env_connection
+
+    result = @@connection.exec_params("SELECT space_name FROM spaces WHERE id = $1;", [space_id])
+    result[0]['space_name']
   end
 
 
