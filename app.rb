@@ -21,7 +21,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post 'go_to_login' do
-    redirect 'login'
+    redirect '/login'
   end
 
   post '/sign_out' do
@@ -129,9 +129,6 @@ class MakersBnB < Sinatra::Base
   get '/requests' do
     redirect '/login' if session[:user] == nil
     @booking_requests = Request.all
-    session[:booking_requests] = @booking_requests[0]
-    @space_name = Request.space_name(space_id: @booking_requests[0].space_id)
-    session[:space_name] = @space_name
     @user_id = session[:user][0].id
     erb :requests
   end
