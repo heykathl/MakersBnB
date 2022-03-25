@@ -5,16 +5,17 @@ require_relative 'space'
 class Request 
 
   attr_reader :id, :space_id, :start_date, :end_date, 
-  :space_renter, :owner_id
+  :space_renter, :owner_id, :space_name
 
   def initialize(id:, space_id:, start_date:, end_date:, 
-    space_renter:, owner_id:)
+    space_renter:, owner_id:, space_name:)
     @id = id
     @space_id = space_id
     @start_date = start_date
     @end_date = end_date
     @space_renter = space_renter
     @owner_id = owner_id
+    @space_name = space_name
   end
 
   def self.create(space_id:, start_date:, end_date:, space_renter:)
@@ -32,17 +33,18 @@ class Request
     p "joined_result = #{joined_result}"
 
     @@owner_id = joined_result[0]['user_id']
+    @@space_name = joined_result[0]['space_name']
 
-    # p @@owner_id
+    p @@space_name
     
     joined_result.map do |row|
       puts row
     end
 
     result = @@connection.exec(
-      "INSERT INTO requests (space_id, start_date, end_date, space_renter, owner_id) 
-      VALUES ('#{space_id}', '#{start_date}','#{end_date}', '#{space_renter}', '#{@@owner_id}') 
-      RETURNING id, space_id, start_date, end_date, space_renter")
+      "INSERT INTO requests (space_id, start_date, end_date, space_renter, owner_id, space_name) 
+      VALUES ('#{space_id}', '#{start_date}','#{end_date}', '#{space_renter}', '#{@@owner_id}', '#{@@space_name}') 
+      RETURNING id, space_id, start_date, end_date, space_renter, space_name")
     result.map do |row|
       Request.new(
         id:result[0]['id'], 
@@ -50,7 +52,8 @@ class Request
         start_date:result[0]['start_date'],
         end_date:result[0]['end_date'],
         space_renter:result[0]['space_renter'],
-        owner_id:result[0]['owner_id']
+        owner_id:result[0]['owner_id'],
+        space_name:result[0]['space_name']
         )
       end
   end
@@ -62,7 +65,7 @@ class Request
     result.map do |row|
       Request.new(id: row['id'], space_id: row['space_id'], 
         start_date: row['start_date'], end_date: row['end_date'], 
-        space_renter: row['space_renter'], owner_id: row['owner_id']
+        space_renter: row['space_renter'], owner_id: row['owner_id'], space_name: row['space_name']
         )
     end
   end

@@ -1,29 +1,43 @@
+<form action = "/sign_out" method="post">
+<button>Sign Out</button>
+</form>
+
+<form action = "/go_to_spaces" method="post">
+<button>Spaces</button>
+</form>
+
 <body>
   <div class="main">
-    <p class="sign" align="center">Requests</p>
-
-    <ul>
+    <h1 class="sign" align="center">Requests</h1>
+    <h2 class="sign" align="center">Spaces you've requested:</h2>
+    <ul "sign" align="center">
     <%# booking requests I made %>
       <% @booking_requests.each do |booking_request| %>
       <% if booking_request.space_renter ==  @user_id %>
-        <li class="request" id="request-<%= booking_request.id %>">
+        <li "sign" align="center" id="request-<%= booking_request.id %>">
           <form action="/requests/confirm" method="get">
           <%# <button to be updated with info of request %>
-            <%# <button><%= request.info %>something
+            <%= booking_request.space_name %>
+            <%= booking_request.start_date %>
+            <%= booking_request.end_date %>
         <% end %>
           </form>
         </li>
       <% end %>
     </ul> 
-
-    <ul>
+    <br>
+    <h2 "sign" align="center">Requests for your spaces:</h2>
+    <ul "sign" align="center">
     <%# booking requests I received %>
       <% @booking_requests.each do |booking_request| %>
       <% if booking_request.owner_id ==  @user_id %>
-        <li class="request" id="request-<%= booking_request.id %>">
+        <li "sign" align="center" id="request-<%= booking_request.id %>">
           <form action="/requests/confirm" method="get">
           <%# <button to be updated with info of request %>
-            <%# <button><%= request.info %>something else
+            <%# <button><%= request.info %>
+            <%= booking_request.space_name %>
+            <%= booking_request.start_date %>
+            <%= booking_request.end_date %>
             <% end %>
           </form>
         </li>
