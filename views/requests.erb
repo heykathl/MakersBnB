@@ -3,24 +3,28 @@
     <p class="sign" align="center">Requests</p>
 
     <ul>
-    <%# booking requests made %>
+    <%# booking requests I made %>
       <% @booking_requests.each do |booking_request| %>
+      <% if booking_request.space_renter ==  @user_id %>
         <li class="request" id="request-<%= booking_request.id %>">
           <form action="/requests/confirm" method="get">
           <%# <button to be updated with info of request %>
             <%# <button><%= request.info %>something
+        <% end %>
           </form>
         </li>
       <% end %>
     </ul> 
 
     <ul>
-    <%# booking requests received %>
+    <%# booking requests I received %>
       <% @booking_requests.each do |booking_request| %>
+      <% if booking_request.owner_id ==  @user_id %>
         <li class="request" id="request-<%= booking_request.id %>">
           <form action="/requests/confirm" method="get">
           <%# <button to be updated with info of request %>
             <%# <button><%= request.info %>something else
+            <% end %>
           </form>
         </li>
       <% end %>

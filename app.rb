@@ -90,13 +90,15 @@ class MakersBnB < Sinatra::Base
     Request.create(
       space_id: session[:space_id],
       start_date: params[:start_date], 
-      end_date: params[:end_date]
+      end_date: params[:end_date],
+      space_renter: session[:user][0].id
     )
     redirect '/requests'
   end
 
   get '/requests' do
     @booking_requests = Request.all
+    @user_id = session[:user][0].id
     erb :requests
   end
 
