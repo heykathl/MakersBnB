@@ -5,5 +5,6 @@ CREATE TABLE requests (
   start_date DATE,
   end_date DATE,
   space_renter INTEGER REFERENCES Credentials(id),
-  owner_id INTEGER   
+  owner_id INTEGER, 
+  space_name VARCHAR(60)  
 );

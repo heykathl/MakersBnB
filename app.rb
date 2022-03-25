@@ -11,8 +11,30 @@ class MakersBnB < Sinatra::Base
 
   enable :sessions
 
+  
   get '/' do
     erb :index
+  end
+
+  post 'go_to_signup' do
+    redirect '/'
+  end
+
+  post 'go_to_login' do
+    redirect 'login'
+  end
+
+  post '/sign_out' do
+    session[:user] = nil
+    redirect '/login'
+  end
+
+  post '/go_to_requests' do
+  redirect '/requests'
+  end
+
+  post '/go_to_spaces' do
+    redirect '/spaces'
   end
 
   post '/signup' do
@@ -48,6 +70,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
+    redirect '/login' if session[:user] == nil
     @spaces = Space.all
     erb :spaces
   end
@@ -104,6 +127,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/requests' do
+    redirect '/login' if session[:user] == nil
     @booking_requests = Request.all
     session[:booking_requests] = @booking_requests[0]
     @space_name = Request.space_name(space_id: @booking_requests[0].space_id)

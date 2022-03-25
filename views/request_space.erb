@@ -1,3 +1,15 @@
+<form action = "/sign_out" method="post">
+<button>Sign Out</button>
+</form>
+
+<form action = "/go_to_spaces" method="post">
+<button>Spaces</button>
+</form>
+
+<form action = "/go_to_requests" method="post">
+<button>Requests</button>
+</form>
+
 <form action='/requests' method="post">
   Request from (YYYY-MM-DD): 
     <br>
@@ -5,7 +17,6 @@
     <br>
   Request to (YYYY-MM-DD): 
     <br>
-  
     <input type="date" name="end_date" min=<%= @available_from %> max=<%= @available_to %>>
     <br>
   <input type="submit" value="Book me" >
