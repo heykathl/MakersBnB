@@ -67,21 +67,16 @@ I need my space to become unavailable to other users (TENANT)
   - confirm spaces
 
 ## Approach to the challenge
-#### Monday 21st March
+
 1. Domain modelled our controller and discussed routes and view pages
   ![Screenshot 2022-03-22 at 12 31 37](https://user-images.githubusercontent.com/74867241/159483336-718e1ed8-30e8-4f57-9a60-a63def1b940b.png)
 
-2. Allocated the following tasks:
-* Controller and databases - Kenny and Jasmine
-* User class in the model to registration - Anusha
-* Rendering view files and research on implementing calendars - Harry and Kathleen
 
-#### Tuesday 22nd March
-3. Domain modelled our model(logic) and discussed databases
+2. Domain modelled our model(logic) and discussed databases
   ![Screenshot 2022-03-22 at 12 40 34](https://user-images.githubusercontent.com/74867241/159484130-ad903d6d-eb36-4bd0-af4e-f54f5ba8f248.png)
   ![Screenshot 2022-03-22 at 12 47 01](https://user-images.githubusercontent.com/74867241/159485263-694667c1-40c7-4442-8c24-059f45102754.png)
 
-4. Completed basic view pages
+3. Completed basic view pages
 * Homepage
   <img width="495" alt="Screenshot 2022-03-22 at 12 37 09" src="https://user-images.githubusercontent.com/74867241/159483789-bb32eae0-a92d-48f3-8162-bd13330721f6.png">
 
@@ -94,11 +89,6 @@ I need my space to become unavailable to other users (TENANT)
 * List a new space
   <img width="675" alt="Screenshot 2022-03-22 at 12 38 03" src="https://user-images.githubusercontent.com/74867241/159483854-38cf7377-1196-4c56-841a-078eb11b068e.png">
 
-#### Wednesday 22nd March
-3. Allocated the following tasks:
-* Connecting the User and Spaces models to the controller and view - Kenny and Jasmine
-* Implementation of the calendar - Anusha
-* Complete the Request model and linking it to the controller and view - Harry and Kathleen
 
-ra
+
 ## Tests
