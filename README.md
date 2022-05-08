@@ -1,29 +1,40 @@
 # MakersBnB
 
+Our challenge was to create a web app resembling AirBnB in order to consolidate our understanding of Ruby and introduce us to full stack development.
 
 ## How to install
 
+Fork this repository then run the following commands to set up the app:<br> 
+```
+git clone [path to your fork]
+cd makersbnb
+bundle install
+```
+
+## Usage
+
+
 
 ## User Stories
- *  
+   
 ```
 As a user, 
 So that I can list my space, 
 I would like register an account (LANDLORD)
 ```
- * 
+  
 ```
 As a registered user, 
 So that I can rent out my space, 
 I would like to list it on the website (LANDLORD)
 ```
- * 
+  
 ```
 As a registered user, 
 So I can manage my portfolio, 
 I would like to be able to list multiple spaces (LANDLORD)
 ```
- * 
+  
 ```
 As a registered user, 
 So that I can provide details about my space I would like to name my space, 
@@ -66,7 +77,7 @@ I need my space to become unavailable to other users (TENANT)
   - request spaces
   - confirm spaces
 
-## Approach to the challenge
+## Planning
 
 1. Domain modelled our controller and discussed routes and view pages
   ![Screenshot 2022-03-22 at 12 31 37](https://user-images.githubusercontent.com/74867241/159483336-718e1ed8-30e8-4f57-9a60-a63def1b940b.png)
